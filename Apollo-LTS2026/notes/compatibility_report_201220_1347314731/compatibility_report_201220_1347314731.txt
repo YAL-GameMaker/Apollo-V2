@@ -1,0 +1,131 @@
+Converting GML script: ${project_dir}\scripts\trace\trace.gml
+Converted description /// @description  trace(...)/// @param ...
+
+macOS icon ${options_dir}\mac\icons\icon512.png written out as 32-bit
+Windows NSIS Installer Script has been set to default due to changes in GameMaker Studio 2
+Converting GML script: ${project_dir}\scripts\scr_unit_test\scr_unit_test.gml
+Converted string - line 73: '
+function ret_cr(i)
+    coroutine.yield(i + 1)
+    coroutine.yield(i + 2)
+    return i + 3;
+end
+' -> "
+function ret_cr(i)
+    coroutine.yield(i + 1)
+    coroutine.yield(i + 2)
+    return i + 3;
+end
+"
+
+Font fnt_test has been converted to font family Ubuntu Condensed SemiItalic (Regular)
+GameMaker Studio 1 font texture has been backed up at ${project_dir}\fonts\fnt_test\fnt_test.gms1.png
+Converting GML script: Apollo.gml
+Error: variable 'bool' has same name as a built-in (function, constant or variable), it must be renamed to function correctly
+Converted description /// @description  (value)/// @param value
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (buf, value)~/// @param buf
+/// @param  value
+
+Converting GML script: Apollo.gml
+Error: variable 'bool' has same name as a built-in (function, constant or variable), it must be renamed to function correctly
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (value)->string : Prints a value as expression (e.g. for errors)/// @param value
+Converted string - line 5: '"' -> "\""
+Converted string - line 9: '"' -> "\""
+Converted string - line 9: '"' -> "\""
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (script, args:array)~/// @param script
+/// @param  args:array
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state, status)~/// @param state
+/// @param  status
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, code)/// @param state_id
+/// @param  code
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, path, chdir = true)/// @param state_id
+/// @param  path
+/// @param  chdir = true
+Converted string - line 16: "\" -> "\\"
+Converted string - line 17: "\" -> "\\"
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, func_name, script_id)/// @param state_id
+/// @param  func_name
+/// @param  script_id
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, func_name, ...args)->result/// @param state_id
+/// @param  func_name
+/// @param  ...args
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, func_name, args_array)->result/// @param state_id
+/// @param  func_name
+/// @param  args_array
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, func_name, ...args)->results_array/// @param state_id
+/// @param  func_name
+/// @param  ...args
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, func_name, results_array, ...args)->results_count/// @param state_id
+/// @param  func_name
+/// @param  results_array
+/// @param  ...args
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, func_name, args_array)->results_array/// @param state_id
+/// @param  func_name
+/// @param  args_array
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, func_name, args_array, results_array)->result_count/// @param state_id
+/// @param  func_name
+/// @param  args_array
+/// @param  results_array
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, name)->value/// @param state_id
+/// @param  name
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, name, value)/// @param state_id
+/// @param  name
+/// @param  value
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, name)->type_name/// @param state_id
+/// @param  name
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, name)->lua_type/// @param state_id
+/// @param  name
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (...values): Returns one or more values back to Lua code./// @param ...values
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (values:array)->values[0] : Returns the contents of an array as a multi-value return./// @param values:array
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (...values)->values[0] : Adds one or more values to the list of returned values./// @param ...values
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, func, ...args)->ok?/// @param state_id
+/// @param  func
+/// @param  ...args
+
+Converting GML script: Apollo.gml
+Converted description /// @description  (state_id, ...values)->continue?/// @param state_id
+/// @param  ...values
+
+Game speed set to 30

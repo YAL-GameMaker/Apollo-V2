@@ -1,0 +1,11 @@
+{
+  "$GMNotes":"v1",
+  "%Name":"compatibility_report_201220_1347314731",
+  "name":"compatibility_report_201220_1347314731",
+  "parent":{
+    "name":"Notes",
+    "path":"folders/Notes.yy",
+  },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
+}

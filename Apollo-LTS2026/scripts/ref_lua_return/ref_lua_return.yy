@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"ref_lua_return",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ref_lua_return",
+  "parent":{
+    "name":"return",
+    "path":"folders/Scripts/return.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

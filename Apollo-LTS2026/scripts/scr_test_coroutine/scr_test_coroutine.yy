@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_test_coroutine",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_test_coroutine",
+  "parent":{
+    "name":"test",
+    "path":"folders/Scripts/test.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

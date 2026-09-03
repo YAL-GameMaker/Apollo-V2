@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"ref_lua_show_error",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ref_lua_show_error",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

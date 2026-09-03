@@ -1,0 +1,114 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: Lua logo
+%%Creator: lua@tecgraf.puc-rio.br
+%%CreationDate: Wed Nov 29 19:02:41 EDT 2000
+%%BoundingBox: -45 0 1035 1080
+%%Pages: 1
+%%EndComments
+%%EndProlog
+
+%------------------------------------------------------------------------------
+%
+% Graphic design by Alexandre Nakonechnyj.
+% PostScript programming by the Lua team.
+% This code is hereby placed in the public domain.
+%
+% Permission is hereby granted, without written agreement and without license
+% or royalty fees, to use, copy, and distribute this logo for any purpose,
+% including commercial applications, subject to the following conditions:
+%
+% * The origin of this logo must not be misrepresented; you must not
+%   claim that you drew the original logo. We recommend that you give credit
+%   to the graphics designer in all printed matter that includes the logo.
+%
+% * The only modification you can make is to adapt the orbiting text to
+%   your product name.
+%
+% * The logo can be used in any scale as long as the relative proportions
+%   of its elements are maintained.
+%
+%------------------------------------------------------------------------------
+
+/PLANETCOLOR	{0 0 0.5 setrgbcolor} bind def
+/HOLECOLOR	{1.0 setgray} bind def
+/ORBITCOLOR	{0.5 setgray} bind def
+/LOGOFONT	{/Helvetica 0.90} def
+/LABELFONT	{/Helvetica 0.36} def
+
+%------------------------------------------------------------------------------
+
+/MOONCOLOR	{PLANETCOLOR} bind def
+/LOGOCOLOR	{HOLECOLOR} bind def
+/LABELCOLOR	{ORBITCOLOR} bind def
+
+/LABELANGLE	125 def
+/LOGO		(Lua) def
+
+/DASHANGLE	10 def
+/HALFDASHANGLE	DASHANGLE 2 div def
+
+% moon radius. planet radius is 1.
+/r 1 2 sqrt 2 div sub def
+
+/D {0 360 arc fill} bind def
+/F {exch findfont exch scalefont setfont} bind def
+
+% place it nicely on the paper
+/RESOLUTION	1024 def
+RESOLUTION 2 div dup translate
+RESOLUTION 2 div 2 sqrt div dup scale
+
+%-------------------------------------------------------------------- planet --
+PLANETCOLOR
+0 0 1 D
+
+%---------------------------------------------------------------------- hole --
+HOLECOLOR
+1 2 r mul sub dup r D
+
+%---------------------------------------------------------------------- moon --
+MOONCOLOR
+1 1 r D
+
+%---------------------------------------------------------------------- logo --
+LOGOCOLOR
+LOGOFONT
+F
+LOGO stringwidth pop 2 div neg
+-0.5 moveto
+LOGO show
+
+%--------------------------------------------------------------------- orbit --
+ORBITCOLOR
+0.03 setlinewidth
+[1 r add 3.1415926535 180 div HALFDASHANGLE mul mul] 0 setdash
+newpath
+0 0
+1 r add
+3 copy
+27 57
+arcn
+stroke
+
+%------------------------------------------------------------------ copyright --
+/COPYRIGHT
+(Graphic design by A. Nakonechnyj. Copyright (c) 1998, All rights reserved.)
+def
+
+LABELCOLOR
+LOGOFONT
+32 div
+F
+2 sqrt 0.99 mul
+dup
+neg
+moveto
+COPYRIGHT
+90 rotate
+%show
+
+%---------------------------------------------------------------------- done --
+showpage
+
+%%Trailer
+%%EOF

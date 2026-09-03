@@ -1,0 +1,774 @@
+```set template default.html```
+```set autoapi ext```
+```gmlapi fnames```
+```set mainclass boxtt```
+```set tag:defcode gml```
+```set title Apollo cheat sheet```
+```set intro
+This is a function "cheat sheet" for Apollo extension by YellowAfterlife.\
+The extension can be acquired from [GM:Marketplace](https://marketplace.yoyogames.com/assets/5192/_)
+or [itch.io](https://yellowafterlife.itch.io/gamemaker-lua).\
+For questions/support, use forums ([itch.io](https://yellowafterlife.itch.io/gamemaker-lua/community),
+[GM forums](https://forum.yoyogames.com/index.php?threads/27984/)),
+or [send me an email](mailto://yellowafterlife@hotmail.com).\
+A most up-to-date version of the manual is always [available online](https://yal.cc/r/17/lua/).\
+The extension is currently available for Windows, Mac (GMS2 only), and Linux.
+```
+```raw
+<style>textarea {
+	font: 85% monospace;
+	border: 1px solid #ccc;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	margin: 0;
+	width: 100%;
+	padding: 4px;
+	box-sizing: border-box;
+	resize: vertical;
+	overflow-y: scroll;
+	word-wrap: normal;
+	white-space: pre;
+}
+pre.lua .kw1 { color: #0d8bca; font-weight: bold; }
+pre.lua .co1, .lua .coMULTI { color: #888; font-weight: normal; }
+pre.lua .nu0 { color: red; }
+pre.lua .sy0 { color: #555; }
+pre.lua .st0 { color: #008000; }
+pre.lua .br0 { color: #555; }
+pre.lua .op { color: #008; font-weight: bold }
+
+#night:checked + .main pre.lua .op { color: #c0c0c0; }
+#night:checked + .main pre.lua .nu0 { color: #FF8080; }
+#night:checked + .main pre.lua .st0 { color: #FCF320; }
+#night:checked + .main pre.lua .kw1 { color: #9DEC76; }
+#night:checked + .main pre.lua .co1 { color: #5B995B; }
+#night:checked + .main textarea {
+	color: #cccccc;
+	background: #000000;
+	border: 1px solid #3E4757;
+}
+.main {
+	background-image: url('data:image/png;base64,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');
+	background-position: top 20px right 20px;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+</style>
+```
+```exec
+function lualink(name) {
+	return render("[" + name + "](https://www.lua.org/manual/5.4/manual.html#" + name + ")");
+}
+function uses(name) {
+	return render("*Technical:* uses [" + name + "](https://www.lua.org/manual/5.4/manual.html#" + name + ").");
+}
+```
+#[General](general) {
+	#[lua_error_handler : script(state_id, text)]() {
+		If you assign a script into this global variable, it will be called whenever an error occurs in Lua code.
+		
+		So you could, for instance, make a script that displays a message box with error text,
+		```gml
+		/// scr_handle_lua_error(state, msg)
+		var state = argument0;
+		show_debug_message("A Lua error occurred: " + argument1);
+		```
+		and then link it up on game start:
+		```
+		lua_error_handler = scr_handle_lua_error;
+		```
+	}
+	#[lua_get_cwd()->path]() {
+		Returns the current working directory (`_wgetcwd` on Windows, `getcwd` otherwise).
+	}
+	#[lua_set_cwd(path)]() {
+		Previously called `lua_chdir`.
+		
+		Changes the current working directory (`_wchdir` on WIndows, `chdir` otherwise).
+		
+		This affects where the Lua code would be reading/writing files from by default.
+	}
+}
+#[Lua states](lua_state) {
+	#[Introduction to states](lua_state_intro) {
+		A state is a subject to most of the Apollo's functions.
+		
+		To put it simply, a state is the Lua program along with it's variables and current execution stack.
+	}
+	#[lua_state_create()->state_id]() {
+		Creates a new Lua state and returns it's ID.
+		```
+		state = lua_state_create();
+		```
+		Lua's [standard libraries](https://www.lua.org/manual/5.3/manual.html#6) are included by default.
+		
+		If you don't want to expose certain API functions to the user, you can use `lua_global_set` to remove those entries:
+		```
+		lua_global_set(state, "io", undefined);
+		```
+	}
+	#[lua_state_destroy(state_id)]() {
+		Destroys the given state, freeing up any resources used by it.
+		```
+		lua_state_destroy(state);
+		```
+		It is generally recommended that you clean up your states once they are no longer needed to avoid memory leaks.
+	}
+	#[lua_state_exists(state_id)]() {
+		Returns whether there's a state/thread with the given ID.
+	}
+	#[lua_reset()]() {
+		Destroys all existing Lua states and threads.
+		
+		This also causes newly made states to have IDs start at 0 again.
+	}
+	#[lua_state_reuse_indexes()->count] {
+		Here's the deal: As you might know, reusing indexes can cause some really mysterious bugs
+		if your code accidentally continues to use an index (which is now taken up by something else).
+		
+		So, by default, Apollo will not do that. Which, in turn, means that after states are destroyed,
+		4 bytes worth of data (which were onece the state's address) will continue to be reserved per state.
+		
+		While it would take about 500 000 states to run out of memory this way,
+		you might prefer not to have that anyway.
+		
+		So, calling this function will mark that memory as available again, causing Apollo to reuse the
+		destroyed indexes for newly created states. This will only affect indexes of states that are
+		destroyed as of calling the function.
+		
+		In other words, while developing your project, you would not call this at all
+		(so that if you use a destroyed state, you get an obvious error), and for final release
+		version you would call it once in a while (such as during room transitions - to further
+		reduce the odds of anything going strange).
+		
+		The function returns the number of indexes that will be reused as result.
+	}
+}
+#[Adding Lua code](lua_add) {
+	#[lua_add_code(state_id, lua_code)]() {
+		Attempts to compile the given snippet of Lua code, add it to given Lua state, and execute it.
+	Returns whether all steps succeeded.
+		```
+		lua_add_code(state, "print('Hello!')");
+		```
+		Same as with other things, compilation/runtime errors are forwarded to `lua_error_handler` if it is defined.
+	}
+	#[lua_add_file(state_id, path, chdir = true)]() {
+		Attempts to load and run a snippet of Lua code from the file at the given path.
+		
+		The function mimics GM's file handling rules,
+		preferring files in game's save directory over the files in game's installation directory.
+		
+		It will, however, also accept absolute paths, bypassing sandbox restrictions.
+		
+		So, if you added an included file called "some.lua", you could then load it with
+		```
+		lua_add_file(state, "some.lua");
+		```
+		If `chdir` is left at `true`, the function will automatically call [lua_chdir] when given a relative path so that the Lua code would work with files in that directory.
+		
+		${uses("luaL_loadfile")}
+	}
+}
+#[Managing global variables](lua_global) {
+	#[lua_global_get(state_id, name)->value]() {
+		Returns the value of the state's given global variable.
+		
+		Note that this returns `undefined` for unsupported types.
+		```
+		lua_add_code(state, "test = 'Hello!'");
+		show_debug_message(lua_global_get(state, "test"));
+		```
+	}
+	#[lua_global_set(state_id, name, value)]() {
+		Changes the value of the state's given global variable.
+		```
+		lua_global_set(state, "test", "Hello!");
+		lua_add_code(state, "print(test)"); // 'Hello!'
+		```
+	}
+	#[lua_global_type(state_id, name)->lua_type]() {
+		Returns the type of a state's global variable as a constant.
+		
+		Possible values are as following: --{
+			-- `lua_type_none`: placeholder for type ID 0
+			-- `lua_type_nil`: an equivalent of GML's `undefined`. Not-yet-set values are `nil`.
+			-- `lua_type_bool`: a boolean value (true or false).
+			-- `lua_type_number`: a numeric type, same as GML's real.
+			-- `lua_type_string`: same as GML's string type.
+			-- `lua_type_table`: a Lua [table](https://www.lua.org/manual/5.3/manual.html#2.1) (array or dictionary).
+			-- `lua_type_function`: a Lua function (that can be called via [lua_call] group).
+			-- `lua_type_thread`: a Lua "thread"/coroutine.
+			-- `lua_type_userdata`: an external reference (see Lua doc).
+			-- `lua_type_lightuserdata`: an external struct (see Lua doc).
+			-- `lua_type_unknown`: unrecognized type (never returns with normal Lua library)
+		}
+		If the state does not exist, an error is thrown.
+		```
+		if (lua_global_type(state, "test") == lua_type_function) {
+		    lua_call(state, "test");
+		} else show_debug_message("The state does not have a function called `test`!");
+		```
+	}
+	#[lua_global_typeof(state_id, name)->type_name]() {
+		Returns the type of a state's global variable as a string.
+		
+		Outside of debugging, you should prefer to use [lua_global_type], as numeric comparisons are much faster than string comparisons.
+		
+		The usual returned values are as following:
+		--{
+		--	`"nil"`: an equivalent of GML's `undefined`. Not-yet-set values are `nil`.
+		--	`"boolean"`: a boolean value (true or false).
+		--	`"number"`: a numeric type, same as GML's real.
+		--	`"string"`: same as GML' string type.
+		--	`"table"`: a Lua [table](https://www.lua.org/manual/5.3/manual.html#2.1). You currently can't do much with these from GML side.
+		--	`"function"`: a Lua function - as such, a thing that could be called via `lua_call`.
+		--	`"thread"`: a Lua "thread"/coroutine (more on these later).
+		}
+		So you could use a snippet like this to check if a state has a function named "test":
+		```
+		if (lua_global_typeof(state, "test") == "function") {
+		    lua_call(state, "test");
+		} else show_debug_message("The state does not have a function called `test`!");
+		```
+	}
+}
+#[Calling Lua code](lua_call_gr) {
+	#[lua_call(state_id, name, ...arguments)]() {
+		Attempts to call a Lua function stored in the given global variable of the state.
+		
+		Returns the first of the function's returned values.
+		
+		If an error occurs, calls `lua_error_handler` and returns `undefined`.
+		```
+		lua_add_code(state, "function greet(s) return 'Hello, ' .. s end");
+		show_debug_message(lua_call(state, "greet", "GameMaker"));
+		```
+		If the function returns multiple values, the first one returned (use [lua_call_m] / [lua_call_xm] / [lua_call_wm] / [lua_call_wxm] to support multiple returned values).
+		
+		If the function returns no values, you get an `undefined`.
+	}
+	#[lua_call_w(state_id, name, argument_array)]() {
+		Like [lua_call], but allows to pass in the arguments as an array.
+		```
+		lua_add_code(state, "function add(a, b) return a + b end");
+		var args = array_create(2, 7); // [7, 7]
+		show_debug_message(lua_call_w(state, "add", args)); // 14
+		```
+	}
+	#[lua_call_m(state_id, name, ...arguments)->results_array]() {
+		Like [lua_call], but packs returned value(s) into an array.
+		```
+		lua_add_code(state, "function multi(v) return v, 1, 2 end");
+		show_debug_message(lua_call_m(state, "multi", "test")); // ["test", 1, 2]
+		```
+		Returns the array with value(s) or an empty array if the function returned nothing.
+	}
+	#[lua_call_xm(state_id, name, results_array, ...arguments)->results_count]() {
+		Like [lua_call_m], but instead writes returned value(s) into the specified array.
+		
+		This allows to reuse the same array for frequently performed operations.
+		
+		Returns the number of values written to the array.
+		```
+		lua_add_code(state, "function multi(v) return v, 1, 2 end");
+		var arr = array_create(5);
+		var n = lua_call_xm(state, "multi", arr, "test");
+		show_debug_message(arr); // ["test", 1, 2, 0, 0]
+		show_debug_message(n); // 3
+		```
+	}
+	#[lua_call_wm(state_id, name, argument_array)->results_array]() {
+		A combination of [lua_call_w] and [lua_call_m] - takes arguments as an array and returns a new array with returned values.
+	}
+	#[lua_call_wxm(state_id, name, argument_array, results_array)->results_count]() {
+		A combination of [lua_call_w] and [lua_call_xm] - takes arguments as an array, writes results to another array, and returns the number of results written.
+	}
+}
+#[Exposing GML scripts to Lua](exposing-scripts) {
+	#[lua_add_function(state_id, name, script_id)]() {
+		Exposes the given GM script to a Lua state as a global function.
+		
+		For example, if you have some
+		```
+		/// scr_alert(text)
+		show_debug_message(argument0);
+		```
+		you could expose it to Lua via
+		```
+		lua_add_function(state, "alert", scr_alert);
+		```
+		If you want to organize your functions in Lua-like modules, you can use lua_add_code for that:
+		```
+		lua_add_function(state, "game_alert", scr_alert);
+		lua_add_code(state, @'
+		    game = { alert: game_alert }
+		');
+		```
+		which would then allow you to do
+		```raw <pre class="lua"><span class="kw1">game</span>.<span class="kw1">alert</span><span class="op">(</span><span class="st0">"Hello!"</span><span class="op">)</span></pre>```
+		on Lua side of things.
+	}
+	#[lua_return(...values)]() {
+		Lua [allows to](https://www.lua.org/manual/5.3/manual.html#3.3.4) return multiple values from a function call at once.
+		
+		This function helps to do that in scripts exposed to Lua via `lua_add_function`.
+		
+		So, you could have
+		```
+		/// lengthdir_xy(len, dir)
+		var len = argument0, dir = argument1;
+		return lua_return(lengthdir_x(len, dir), lengthdir_y(len, dir));
+		```
+		expose it via
+		```
+		lua_add_function(state, "lengthdir_xy", lengthdir_xy);
+		```
+		and use it from Lua side like
+		```raw
+		<pre class="lua"><span class="kw1">local</span> x<span class="op">,</span> y <span class="op">=</span> <span class="kw1">lengthdir_xy</span><span class="op">(</span><span class="nu0">30</span><span class="op">,</span> <span class="nu0">45</span><span class="op">)</span>
+<span class="kw1">print</span><span class="op">(</span>x<span class="op">,</span> y<span class="op">)</span> <span class="co1">-- 21.21, -21.21</span></pre>
+		```
+	}
+	#[lua_return_w(values:array)]() {
+		Same as aforementioned `lua_return`, but returns the contents of an array as a value list instead.
+		Note this will not work for nested arrays, however.
+	}
+	#[lua_return_add(...values)]() {
+		Add zero or more values to the list of returned values.
+		
+		This is particularly handy for any GML operations that are done in a loop, e.g.
+		```
+		/// instance_find_all(obj)
+		with (argument0) lua_return_add(id);
+		return lua_return_add();
+		```
+		The last line with an empty `lua_return_add` is needed to return 0 values if loop matches no instances (as runtime would otherwise assume that you are going to return something with a regular `return`).
+	}
+	#[lua_current]() {
+		When a Lua state calls the exposed GML script, this variable holds the ID of the "caller" state.
+		
+		Can be used if you want to do anything aside of just returning value(s).
+	}
+	#[lua_show_error(text)]() {
+		Sends an error message to the currently executing Lua state.
+		
+		This should only be used inside scripts exposed via [lua_add_function].
+		```
+		/// scr_variable_global_get(name)
+		if (is_string(argument0)) {
+			return variable_global_get(argument0);
+		} else lua_show_error("Expected a variable name to be a string.");
+		```
+	}
+	#[Automatically exposing scripts/functions](lua-gen) {
+	```raw
+	<script type="text/javascript">(function(){function v(d,r){var m=d.exec(r);return null!=m?m[1]:null}window.luaScriptGen=function(d,r){var m,z=RegExp("^[aeouiy]","g"),f="",f=f+"var state = argument0;\n",n=[],w="",a,g;a=RegExp("^[ \\t]*(\\w+)[ \\t]*(?:#|=[ \\t]*([^\n;]+))[ \\t]*$","gm");d.replace(a,function(a,d,b){null==b&&(b=d);f+='lua_global_set(state, "'+d+
+'", '+b+");\n";return a});m=RegExp(":[ \\t]*(\\w+)","g");a=RegExp("^[ \\t]*(:)?[ \\t]*(\\w+)(?:[ \\t]*:[ \\t]*(\\w+))?[ \\t]*\\(([^\n)]*)\\)[ \\t]*(:[ \\t]*(\\w*)[ \\t]*)?[;]?[ \\t]*$","gm");d.replace(a,function(d,a,b,g,c,k,p){a=null!=a;null==g&&(g=b);var e=c;p=(k=null!=k)&&"bool"==p.toLowerCase();a&&(n.push(b),""!=e&&(e=", "+e),e="self"+e);f+='lua_add_function(state, "'+b+'", ';f=r?f+('asset_get_index("ref_'+b+'")'):f+("ref_"+b);f+=");\n";c=""+("\n#define ref_"+b+"\n/// "+b+"("+e+")\n");var x=""!=
+e?e.split(","):[],e=x.length;c+="if (argument_count != "+e+") return "+('lua_show_error("'+b+": Expected "+e+" argument")+(1!=e?"s":"")+', got " + string(argument_count));\n';for(var h=-1;++h<e;){var y=x[h],q=v(m,y);if(null!=q){var l;switch(q){case "string":l=["is_string"];break;case "bool":case "color":case "float":case "id":case "index":case "int":case "number":case "real":l=["is_real","is_int64"];break;default:l=null}if(null!=l){var t="argument"+h;c+="if !(";for(var u=0;u<l.length;c+=l[u++]+"("+
+t+")")0<u&&(c+=" || ");c+=""+(') return lua_show_error("'+b+": Expected "+(null!=v(z,q)?"an":"a")+(" "+q+" for "+t+" (")+y.trim()+('), got " + lua_print_value('+t+"));\n"))}}}a&&(c+="with (argument0) ");k&&(c+="return ");p&&(c+="lua_bool(");c+=g+"(";for(h=b=a?1:0;h<e;c+="argument"+h++)h>b&&(c+=", ");p&&(c+=")");w+=""+(c+");\n");return d});var k=n.length;if(0<k)for(a=0;a<k;f+="end');\n")for(g=n[a++],f+="lua_add_code(state, 'if (__idfields ~= nil) then\n",a=0;a<k;f+="    __idfields."+g+" = true;\n")g=
+n[a++];return f+=""+w}})();</script>
+	```
+		If you are building a medium-scale scripting API, you may find yourself needing to expose a large number of scripts (and/or built-in functions), as well as introducing argument type checking to prevent GML-side errors.
+		
+		To save you from having to deal with that, Apollo includes a small utility that generates wrapper and loader scripts.
+		
+		It accepts function definitions in `funcname(arg1:type1, arg2:type2, ...):rtype`,
+		--{
+		--	`arg1, arg2, ...`: argument names. Will be shown in errors returned to Lua.
+		--	`type1, type2, ...`: argument types. Optional.
+			If defined, code will be added to ensure that each argument matches it's type.
+			Known types are `real`, `bool`, `string`;
+			`color`, `int`, `index`, `id` can also be used, but are treated same as real.
+		--	`rtype`: returned type, if the function returns a specific one.
+			If set to `bool`, return-statement will be wrapped in `lua_bool` call.
+		--	If prefixed with `:`, function will be marked as "instance function" and will accept an instance ID as first argument, also allowing to call it as `inst.func(...)` if instance access scripts are set up.
+		}
+		Constants can be defined either as `name#` (uses the value of same-named constant/variable) or `name = value` (computes the given GML value at inclusion time).
+		
+		The tool is included with the extension as `ApolloGen.exe`;
+		
+		A web-based version is available below:
+		```raw
+		<textarea rows="7" id="gen_in" onchange="">// Examples:
+show_debug_message(value)
+is_string(value):bool
+string_lower(s:string):
+clamp(val:number, min:number, max:number):
+:instance_destroy()
+:motion_add(dir:number, speed:number)
+c_white#
+game_version = 1000</textarea>
+		<input type="checkbox" id="gen_compat" />
+		<label for="gen_compat">Workaround extension script bug (use <tt>asset_get_index</tt>)</label><br>
+		```
+		
+		Whenever the contents of above field are changed, updated loader script will be output into the field below:
+		```raw
+		<textarea rows="7" id="gen_out"></textarea>
+		```
+		You can then save them into a .gml file and import it to your project.
+		
+		```raw
+		<script>(function() {
+			function proc() { gen_out.value = luaScriptGen(gen_in.value, gen_compat.checked); }
+			gen_compat.onchange = gen_in.onchange = proc;
+			proc();
+		})();</script>
+		```
+	}
+}
+#[Exchanging values between GML and Lua](exchanging-values) {
+	#[Premise](exv-premise) {
+		The rules for translating between GML and Lua values are as following:
+		
+		*GML➜Lua*: --{
+		--	real ➜ number (64-bit)
+		--	int64 ➜ integer (64-bit)
+		--	bool ➜ boolean
+			(note: see [lua_bool] for details)
+		--	string ➜ string
+		--	array ➜ table\
+			Copied by-value recursively; adjusted for Lua array-tables being 1-indexed.
+		--	struct ➜ table (GMS2.3+)\
+			Copied by-value recursively.
+		--	method ➜ `gml_method` userdata (GMS2.3+)\
+		--	[lua_byref] ➜ `gml_ref` userdata
+		--	Anything else ➜ `nil`
+		}
+		*Lua➜GML*: --{
+		--	number ➜ real or int64 accordingly
+		--	string ➜ string
+		--	boolean ➜ bool
+		--	table ➜ array or struct\
+			Copied by-value recursively.\
+			If length (${lualink("lua_rawlen")}) is >0,
+			the value becomes an array,
+			else it becomes a struct (2.3+) 
+			or a 2d array of keys and values (pre-2.3)
+		--	`gml_method` userdata ➜ original GML value
+		--	`gml_ref` userdata ➜ original GML value
+		--	Anything else ➜ `undefined`
+		}
+		
+	}
+	#[lua_bool(value)->bool_value]() {
+		As of Apollo V2, this function is equivalent to calling `bool` directly
+		and is only here for backwards compatibility.
+		
+		A thing to remember: unlike GML, Lua is stricter about use of boolean types
+		(e.g. `1 + true` is forbidden),
+		therefore you may want to cast your values to appropriate types before passing them to Lua.
+		
+		`lua_true` or a `lua_false` read-only variables hold values
+		for boolean true and false accordingly - unlike the built-in `true` and `false`
+		constants, which currently remain to be equal to `1` and `0` accordingly.
+	}
+	#[lua_script(script_index)->marker]() {
+		Primarily intended for use with pre-2.3 versions of GM,
+		this function allows to hint a value so that upon handing it over to Lua
+		it would become a function reference (rather than staying a script index).
+		
+		Returns a tiny array with metadata including the given script index.
+		
+		This allows to pack up an array of functions, for example.
+		```
+		lua_add_code(state, @'
+			function test(f)
+				f("hi!");
+			end
+		');
+		lua_call(state, "test", lua_script(scr_show_debug_message));
+		```
+	}
+	#[lua_byref(array_or_struct, recursive = false)->marker]() {
+		This function hints a GML array/struct to be passed to Lua by reference!
+		
+		Passing by reference means that when the source array/struct is modified,
+		the changes will be reflected in any references to it automatically,
+		and that modifying the contents from Lua will reflect changes on GML side.
+		
+		If the optional `recursive` argument is set to `true`, any sub-items pulled
+		from the array/struct will be passed to Lua by reference automatically
+		(good for nested arrays/structs).
+		
+		#[Arrays] {
+			There are a few things to this: --{
+			--	To match Lua "array" behaviour more closely,
+				the array reference will be 1-indexed on Lua side.
+				So, if you wrote something into index 2 on GML side,
+				it would be accessible at index 3 on Lua side, and vice versa.
+			--	`ipairs` doesn't work on these due to `__ipairs` meta-function having been
+				removed in Lua 5.3+, but you can use `pairs` on them
+				(which will sequentially iterate from `1` to `#arr`),
+				or doing `for i = 1, #arr` directly.
+			}
+			
+			Example:
+			```
+			lua_add_code(state, @'
+				function test(arr)
+					print(arr[1]) -- "one"
+					arr[2] = "hi!"
+				end
+			');
+			arr[0] = "one";
+			arr[1] = "two";
+			lua_call(state, "test", lua_byref(arr));
+			show_debug_message(arr[1]); // "hi!"
+			```
+		}
+		#[Structs (GMS≥2.3)] {
+			These behave pretty alike to Lua tables, but keys can only be strings.
+			
+			Also accessing a non-existent struct variable from Lua will give you a `nil`
+			instead of throwing an error on GML side.
+			
+			Example:
+			```
+			lua_add_code(state, @'
+				function test(o)
+					print(o.one) -- 1
+					print(o.miss) -- nil
+					o.two = "hi!"
+				end
+			');
+			st = { one: 1, two: 2 };
+			lua_call(state, "test", lua_byref(st));
+			show_debug_message(st.two); // "hi!"
+			```
+		}
+	}
+	#[Working with GM instance variables in Lua]() {
+		If you are using GameMaker Studio 2 or an non-ancient version of GameMaker: Studio,
+		you can have Lua directly read and write variables on GameMaker instances.
+		
+		To do so, you would add three scripts to your project:
+		```
+		/// ref_variable_instance_get(context, name)
+		var q = argument0, s = argument1;
+		with (q) return variable_instance_get(id, s);
+		if (q < 100000) {
+		    lua_show_error("Couldn't find any instances of " + string(q)
+		        + " (" + object_get_name(q) + ")");
+		} else lua_show_error("Couldn't find instance " + string(q));
+		return undefined;
+		```
+		
+		(reads a variable from an instance),
+		```
+		/// ref_variable_instance_set(context, name, value)
+		var q = argument0, s = argument1, v = argument2, n = 0;
+		with (q) { variable_instance_set(id, s, v); n++; }
+		if (n) exit;
+		if (q < 100000) {
+		    lua_show_error("Couldn't find any instances of " + string(q)
+		        + " (" + object_get_name(q) + ")");
+		} else lua_show_error("Couldn't find instance " + string(q));
+		```
+		
+		(writes a variable to an instance(s)),
+		```
+		/// ref_variable_instance_init(lua_state)
+		var q = argument0;
+		lua_add_function(q, "variable_instance_get", ref_variable_instance_get);
+		lua_add_function(q, "variable_instance_set", ref_variable_instance_set);
+		lua_add_code(q, @'-- ref_variable_instance_init()
+		    __idfields = __idfields or { };
+		    debug.setmetatable(0, {
+		        __index = function(self, name)
+		            if (__idfields[name]) then
+		                return _G[name];
+		            else
+		                return variable_instance_get(self, name);
+		            end
+		        end,
+		        __newindex = variable_instance_set,
+		    })
+		');
+		```
+		
+		(exposes the above scripts to a Lua state and sets it up to use them when trying to read/write a field on a numeric value (id)).
+		
+		Then you can use them as following:
+		```
+		// create a Lua state:
+		state = lua_state_create();
+		// allow the state to work with GM instances:
+		ref_variable_instance_init(state);
+		// add a test function to the state -
+		// function takes an instance and modifies it's `result` variable.
+		lua_add_code(state, "function test(q) q.result = 'Hello!' end");
+		// call the test-function for the current instance and display the result:
+		result = "";
+		lua_call(state, "test", id);
+		show_debug_message(result);
+		```
+	}
+}
+#[Lua coroutines]() {
+	#[A summary on Lua coroutines]() {
+		A [coroutine](https://en.wikipedia.org/wiki/Coroutine), in short, is a function that can pause/resume execution at arbitrary points.
+		
+		These can be used for iterators, cutscenes (pausing/resuming allows to write timing in an intuitive way),
+		tweening, AI, or anything else that benefits from maintaining the state across multi-call execution.
+		
+		This set of functions enables you to use Lua coroutines in Apollo.
+	}
+	#[lua_thread_create(state_id)]() {
+		Creates a "thread" state for the given Lua state and returns it's ID.
+		
+		Such "threads" share the global context (variables, functions, etc.) with their parent state, but have their own clal stack, meaning that they can do their own thing (namely, executing coroutines) while the parent state does something else.
+		```
+		thread = lua_thread_create(state);
+		```
+	}
+	#[lua_thread_destroy(state_id)]() {
+		Destroys a previously created "thread" state.
+		
+		Does not free resources of the parent state, only what was owned by the thread itself.
+		Is a convenience function and is interchangeable with `lua_state_destroy`.
+	}
+	#[lua_call_start(state_id, name, ...arguments)]() {
+		Starts a coroutine call on the given sate, returns whether the operation succeeded.
+		
+		Note that some functions will work oddly (or not work at all) on a state that is currently amidst the coroutine call, which is why you should generally create a thread for the coroutine call.
+	}
+	#[lua_call_start_w(state_id, name, arguments:array)]() {
+		Same as `lua_call_start`, but takes arguments as an array.
+	}
+	#[lua_call_next(state_id)]() {
+		Executes the next iteration on the given state and returns whether the coroutine call is ongoing (as opposed to finishing or encountering a runtime error).
+		
+		The general scheme of performing coroutine calls is thus as following:
+		```
+		lua_add_code(state, "
+		    function test(num)
+		        for i = 1, num do
+		            coroutine.yield(i)
+		        end
+		        return 'rad!'
+		    end
+		");
+		th = lua_thread_create(state);
+		if (lua_call_start(th, "test", 4)) {
+		    while (lua_call_next(th)) {
+		        show_debug_message("yield: " + string(lua_call_result));
+		    }
+		    show_debug_message("result: " + string(lua_call_result));
+		}
+		lua_thread_destroy(th);
+		```
+	}
+	#[lua_call_result]() {
+		Holds the result of the last `lua_call_next` - yielded value when the execution continues, and final returned value when the execution stops.
+	}
+}
+#[Writing Lua code]() {
+	#[Learning Lua]() {
+		["getting started"](https://www.lua.org/start.html)
+		page on the Lua's website houses a large collection of links to tutorials, wikis, and other learning materials.
+		
+		[Lua Manual](https://www.lua.org/manual/5.4/manual.html)
+		provides detailed explanations on how internal elements and all standard functions of the language work.
+	}
+	#[Translating GML to Lua]() {
+		If you have pre-existing GML code that you'd like to quickly tweak for use with Apollo,
+		I have also developed an [online GML->Lua converter](http://yal.cc/r/17/lua/gen/).
+		
+		While automatic conversion won't make extensive use of Lua-specific language features, it produces functional code in vast majority of cases and the output is clean enough to tweak it manually if needed.
+	}
+}
+#[FAQ](FAQ) {
+	#[What Lua version is used?](lua-version) {
+		Apollo uses Lua 5.4 as of writing this.
+		
+		In case you'd like a custom version (such as to use LuaJIT, or to use a Lua fork with
+		different syntax), C++ source code is included - it should work with any Lua build
+		down to 5.1 or so.
+	}
+	```hide
+	#[How to compile the source code](lua-compile) {
+		*Windows:* Open the included Visual Studio (>=2015) project, compile Release x86.\
+		If you have [gmxgen](https://bitbucket.org/yal_cc/gmxgen/) added to your PATH, this will
+		also auto-update the extension to match new functions/scripts.
+		
+		*Linux:* Run `build-linux-gms1.sh` or `build-linux-gms2.sh` accordingly.
+		
+		*Mac:* Run `build-osx-gms1.sh` or `build-osx-gms2.sh` accordingly.\
+		See included notes on `install_name_tool`.
+		
+		Lua source files reside in `Lua/`; dynamically linked Lua binaries reside in
+		`Apollo.gmx/extensions/Apollo/`
+	}
+	```
+	#[What platforms does it run on?]() {
+		The extension runs on Windows, Mac, and Linux - linked dynamically in all cases.
+		
+		Apollo v2 beta currently only comes with a Windows (GMS1,GMS2) binary,
+		but you can compile it yourself (code is portable).
+		
+		Mac may require additional tinkering (via `install_name_tool` - [example](https://github.com/YellowAfterlife/steamworks.gml/blob/master/build_osx.sh#L7)), as library inclusion paths may vary depending on whether the game is running from IDE, whether YYC is enabled, and GMS version. If you are familiar with Mac extension development yourself, feel free to get in touch about better ways of handling this.
+	}
+}
+#[Limitations]() {
+	#["attempt to yield across a C-call boundary"](limit-ccb) {
+		Internally, Apollo V2 uses a Lua C API function ${lualink("lua_yieldk")}
+		to switch back and forth between GML and Lua code.
+		
+		So, when you ask to call a GML script, the current Lua state pauses,
+		writes arguments to a buffer, and returns execution to GML code.
+		GML code then reads the arguments from a buffer, calls the script in question,
+		writes the result(s) back into the buffer, and calls an extension function,
+		which reads them from a buffer, hands them to the Lua state, and resumes execution.
+		
+		There is a little caveat to this: in rare cases
+		(most notably, inside `__tostring`, and `ipairs`)
+		Lua does not support pausing the state, and you will get the aforementioned error.
+		
+		When this happens, you can tweak the code to either not access GML side of things
+		in the function itself (e.g. cache the result elsewhere)
+		or change the code so that it does not rely on those features
+		(e.g. add a separate `toString` function to your metatable or make a custom iterator).
+	}
+	#[Passing Lua values to GML by-reference](limit-lua-ref) {
+		Lua supports several additional reference types (such as Lua function references),
+		but these cannot be safely sent to GML as pointers as they are garbage-collected,
+		and thus may get recycled while still referenced on the GML side of things
+		(resulting in hard crash when trying to use the passed back value).
+		
+		A good way to deal with this is to make a pair of lookup tables - since Lua allows table indexes to be of any type, you can do something like the following:
+		```lua
+		ref = {
+		    __r2i = { },
+		    __i2r = { },
+		    __next = 0
+		}
+		function ref.toid(fn)
+		    local id = ref.__r2i[fn]
+		    if (id == nil) then
+		        id = ref.__next
+		        ref.__next = id + 1
+		        ref.__r2i[fn] = id
+		        ref.__i2r[id] = fn
+		    end
+		    return id
+		end
+		function ref.fromid(id)
+		    return ref.__i2r[id]
+		end
+		function ref.free(fn)
+		    local id
+		    if (type(fn) == "number") then
+		        id = fn
+		        fn = ref.__i2r[id]
+		    else
+		        id = ref.__r2i[fn]
+		    end
+		    ref.__r2i[fn] = nil
+		    ref.__i2r[id] = nil
+		end
+		```
+		
+		Which allow you to use `ref.toid(some_reference)` to return/create a numeric ID for a reference, `ref.fromid(index)` to convert one of those back to a reference, and `ref.free(index_or_reference)` to remove the lookup pairs (allowing Lua to safely recycle the reference when it is no longer used).
+	}
+}
