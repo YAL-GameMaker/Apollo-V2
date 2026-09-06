@@ -13,5 +13,5 @@ build() {
     # Add -std=c++11 if it barks
 }
 #build -m32 Apollo.gmx/extensions/Apollo/Apollo.so
-build -m64 Apollo_23/extensions/Apollo/Apollo.so
-cp Apollo_23/extensions/Apollo/Apollo.so Apollo_yy/extensions/Apollo/Apollo.so
+build -m64 Apollo-LTS2026/extensions/Apollo/Apollo.so
+cp Apollo-LTS2026/extensions/Apollo/Apollo.so Apollo-GMS2.2/extensions/Apollo/Apollo.so

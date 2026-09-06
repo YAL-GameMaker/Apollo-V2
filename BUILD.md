@@ -9,6 +9,8 @@ from GmxGen's README.
 ### Setting up Lua
 Download a [Lua release](https://lua.org/download.html) and extract it to the Lua directory so that `lua.h` is at `Lua/lua.h`
 
+Remove `lua.c` and `luac.c` (these are for standalone Lua demos)
+
 ### Setting up GmxGen
 
 1. [Install Haxe](https://haxe.org/download/) (make sure to install Neko VM!)

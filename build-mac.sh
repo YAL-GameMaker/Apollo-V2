@@ -17,5 +17,5 @@ build() {
     g++ ${arch} ${objs} -O3 -fPIC -shared -o ${path}
 }
 #build -m32 Apollo.gmx/extensions/Apollo/Apollo.dylib
-build -m64 Apollo_23/extensions/Apollo/Apollo.dylib
-cp Apollo_23/extensions/Apollo/Apollo.dylib Apollo_yy/extensions/Apollo/Apollo.dylib
+build -m64 Apollo-LTS2026/extensions/Apollo/Apollo.dylib
+cp Apollo-LTS2026/extensions/Apollo/Apollo.dylib Apollo-GMS2.2/extensions/Apollo/Apollo.dylib
